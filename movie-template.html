@@ -205,7 +205,7 @@
             <h2 style="font-size: 2.5rem; margin-bottom: 30px;">هل أنت جاهز للمشاهدة؟</h2>
             <p style="color: var(--muted); margin-bottom: 50px;">انضم إلى أكثر من 5 مليون مستخدم واستمتع بتجربة ترفيهية لا مثيل لها.</p>
             
-            <a href="https://www.moviesbox.com.co/home/" class="btn-mega">
+            <a href="#" class="btn-mega" onclick="handleDownloadClick(event)">
                 <span>تحميل البرنامج الآن</span>
                 <span style="font-size: 30px;">⬇️</span>
             </a>
@@ -229,6 +229,25 @@
             </a>
         </div>
     </footer>
+    <script>
+function handleDownloadClick(e) {
+    e.preventDefault();
+
+    let clickCount = localStorage.getItem("downloadClicks") || 0;
+    clickCount = parseInt(clickCount) + 1;
+
+    localStorage.setItem("downloadClicks", clickCount);
+
+    // 🔴 أول مرتين → Smart Link
+    if (clickCount <= 2) {
+        window.open("YOUR_SMART_LINK_HERE", "_blank");
+    } 
+    // 🟢 المرة الثالثة → رابط التحميل الحقيقي
+    else {
+        window.location.href = "https://www.moviesbox.com.co/home/";
+    }
+}
+</script>
 
 </body>
 </html>
