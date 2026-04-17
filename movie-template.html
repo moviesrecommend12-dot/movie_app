@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Box | منصة الترفيه المتكاملة</title>
+    <meta name="description" content="تحميل تطبيق Movie Box لمشاهدة أحدث الأفلام والمسلسلات بجودة عالية، تحميل سريع، ترجمة احترافية، ودعم كامل للغة العربية."> <meta name="keywords" content="Movie Box, تحميل أفلام, مشاهدة مسلسلات, تطبيق أفلام, أفلام 2026, تحميل Movie Box"> <meta name="author" content="Movie Box"> <meta name="robots" content="index, follow"> <!-- ✅ Open Graph (للسوشيال ميديا) --> <meta property="og:title" content="Movie Box | عالم السينما في جيبك"> <meta property="og:description" content="استمتع بمشاهدة وتحميل أحدث الأفلام والمسلسلات بجودة عالية."> <meta property="og:type" content="website"> <meta property="og:url" content="https://www.moviesbox.com.co/"> <meta property="og:image" content="https://www.moviesbox.com.co/preview.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #F5C518;
+            --accent: #FF6B2B;
+            --bg: #030305;
+            --card-bg: rgba(15, 15, 25, 0.7);
+            --text: #ffffff;
+            --muted: #a0a0ab;
+            --border: rgba(255, 255, 255, 0.05);
+            --glow-color: rgba(245, 197, 24, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* خلفية متوهجة متحركة */
+        .bg-elements {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+        .glow-1 { position: absolute; top: -10%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%); }
+        .glow-2 { position: absolute; bottom: -10%; right: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(255, 107, 43, 0.1) 0%, transparent 70%); }
+
+        header {
+            background: rgba(3, 3, 5, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 20px 5%;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-weight: 900; font-size: 28px; color: var(--text); text-decoration: none; direction: ltr; }
+        .logo span { background: var(--gold); color: #000; padding: 0 10px; border-radius: 8px; margin-right: 5px; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 120px 20px 60px; }
+
+        /* قسم البطل - Hero Section */
+        .hero { text-align: center; margin-bottom: 100px; }
+        .hero h1 { font-size: 4rem; font-weight: 900; margin-bottom: 20px; background: linear-gradient(45deg, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.4rem; color: var(--muted); max-width: 700px; margin: 0 auto 40px; }
+
+        /* البطاقات والأقسام */
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 50px; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--gold); margin: 15px auto; border-radius: 2px; }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            margin-bottom: 60px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* مواصفات التطبيق - Specs */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            text-align: center;
+        }
+        .spec-item {
+            padding: 25px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 24px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .spec-item:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(245, 197, 24, 0.05); }
+        .spec-icon { font-size: 35px; margin-bottom: 15px; display: block; }
+        .spec-label { color: var(--muted); font-size: 14px; display: block; }
+        .spec-value { font-weight: 700; font-size: 18px; color: var(--gold); }
+
+        /* المميزات الطويلة */
+        .feature-box { display: flex; align-items: center; gap: 30px; margin-bottom: 40px; }
+        .feature-box:nth-child(even) { flex-direction: row-reverse; }
+        .feature-text { flex: 1; }
+        .feature-text h3 { font-size: 1.8rem; color: var(--gold); margin-bottom: 15px; }
+        .feature-img { flex: 1; height: 250px; background: rgba(255,255,255,0.05); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 50px; border: 1px dashed var(--border); }
+
+        /* زر التحميل العملاق في النهاية */
+        .download-footer {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle at center, rgba(255, 107, 43, 0.15) 0%, transparent 70%);
+            border-radius: 40px;
+            margin-top: 50px;
+        }
+        .btn-mega {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px 60px;
+            background: linear-gradient(45deg, var(--accent), #ff8e5d);
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 900;
+            border-radius: 50px;
+            box-shadow: 0 20px 40px rgba(255, 107, 43, 0.4);
+            transition: 0.4s;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .btn-mega:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 30px 60px rgba(255, 107, 43, 0.6);
+            filter: brightness(1.1);
+        }
+
+        footer { text-align: center; padding: 40px; color: var(--muted); border-top: 1px solid var(--border); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .feature-box { flex-direction: column !important; text-align: center; }
+            .btn-mega { width: 100%; font-size: 18px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-elements">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+    </div>
+
+    <header>
+        <a href="#" class="logo"><span>MOVIE</span> BOX</a>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>عالم السينما في جيبك</h1>
+            <p>تطبيق Movie Box هو رفيقك المثالي لمشاهدة وتحميل أحدث الأفلام والمسلسلات العالمية والعربية بجودة خيالية وتحكم كامل.</p>
+        </section>
+
+        <h2 class="section-title">مواصفات التطبيق</h2>
+        <div class="glass-card">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">📱</span>
+                    <span class="spec-label">الأنظمة المدعومة</span>
+                    <span class="spec-value">Android 6+</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">💾</span>
+                    <span class="spec-label">حجم التطبيق</span>
+                    <span class="spec-value">65 ميجابايت</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">🌐</span>
+                    <span class="spec-label">اللغات</span>
+                    <span class="spec-value">العربية + 15 لغة</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">✨</span>
+                    <span class="spec-label">آخر تحديث</span>
+                    <span class="spec-value">V 3.2.0 (2026)</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">لماذا تختار Movie Box؟</h2>
+        
+        <div class="feature-box">
+            <div class="feature-text">
+                <h3>تخصيص الترجمة الاحترافي</h3>
+                <p>لا تفوت أي لحظة بسبب توقيت الترجمة! يمكنك الآن تقديم وتأخير الترجمة يدوياً، تغيير حجم الخط، وتعديل الألوان لتناسب راحتك البصرية.</p>
+            </div>
+            <div class="feature-img">🎬</div>
+        </div>
+
+        <div class="feature-box">
+            <div class="feature-text">
+                <h3>محتوى من كل أنحاء العالم</h3>
+                <p>من هوليوود إلى بوليوود، ومن الدراما الكورية إلى المسلسلات العربية والتركية الحصرية. كل شيء مرتب في تصنيفات ذكية سهلة التصفح.</p>
+            </div>
+            <div class="feature-img">🌍</div>
+        </div>
+
+        <div class="feature-box">
+            <div class="feature-text">
+                <h3>تحميل فائق السرعة</h3>
+                <p>يدعم التطبيق تقنية التحميل المتعدد التي تسرع التنزيل بنسبة 300%. حمل أفلامك المفضلة بوضوح 4K وشاهدها في أي وقت وأي مكان.</p>
+            </div>
+            <div class="feature-img">⚡</div>
+        </div>
+
+        <section class="download-footer">
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">هل أنت جاهز للمشاهدة؟</h2>
+            <p style="color: var(--muted); margin-bottom: 50px;">انضم إلى أكثر من 5 مليون مستخدم واستمتع بتجربة ترفيهية لا مثيل لها.</p>
+            
+            <a href="https://www.moviesbox.com.co/home/" class="btn-mega">
+                <span>تحميل البرنامج الآن</span>
+                <span style="font-size: 30px;">⬇️</span>
+            </a>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Movies recommendations - جميع الحقوق محفوظة لترشيحات أفلام</p>
+        <div style="margin-top: 15px;">
+            <a href="https://www.instagram.com/moviesrecommendtion12" target="_blank" 
+               style="font-size: 14px; 
+                      color: var(--gold); 
+                      text-decoration: none; 
+                      border: 1px solid var(--gold); 
+                      padding: 5px 15px; 
+                      border-radius: 20px; 
+                      transition: 0.3s;
+                      display: inline-block;">
+                انستغرام Instagram
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
